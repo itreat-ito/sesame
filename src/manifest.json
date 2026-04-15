@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Sesame!",
+  "version": "1.0.0",
+  "description": "登録済みのドメインに対してBASIC認証の入力を自動で行います。",
+  "permissions": [
+    "webRequest",
+    "webRequestAuthProvider",
+    "storage",
+    "activeTab",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "src/js/background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "src/options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

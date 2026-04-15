@@ -1,0 +1,165 @@
+@use 'reset' as *;
+@use '_variables' as *;
+@use 'common' as *;
+
+body {
+  width: 300px;
+  padding: 20px;
+}
+
+.popup {
+  padding: 0;
+}
+
+// ヘッダー
+.popup-header {
+  text-align: center;
+  margin-bottom: 24px;
+
+  &__title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: $text-color;
+    margin: 0;
+  }
+
+  &__subtitle {
+    font-size: 0.9rem;
+    color: $text-muted;
+    margin-top: 4px;
+    line-height: 1.6;
+  }
+}
+
+// 現在のサイト情報
+.popup-status {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: $bg-color;
+  border-radius: 8px;
+
+  &__title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  &__label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: $text-color;
+    margin: 0;
+  }
+
+  &__badge {
+    display: none;
+    align-items: center;
+
+    &.is-visible {
+      display: inline-flex;
+    }
+  }
+
+  &__value {
+    font-size: 0.8rem;
+    color: $text-muted;
+    word-break: break-all;
+    display: block;
+  }
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  white-space: nowrap;
+
+  &--registered {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+  }
+}
+
+// 登録フォーム
+.popup-form {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: $bg-color;
+  border-radius: 8px;
+
+  .ttl-s {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: $text-color;
+    margin-bottom: 12px;
+    text-align: center;
+    border-bottom: none;
+    padding-bottom: 0;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 12px;
+
+    label {
+      font-size: 0.8rem;
+      margin-bottom: 4px;
+    }
+
+    input {
+      font-size: 0.85rem;
+      padding: 8px 10px;
+    }
+
+    small {
+      margin-top: 4px;
+    }
+  }
+
+}
+
+.popup-form .btn-save,
+.popup-footer .btn-save {
+  width: 100%;
+  padding: 10px 16px;
+  box-sizing: border-box;
+}
+
+.popup-form .btn-save {
+  margin-top: 16px;
+}
+
+.btn--success {
+  background-color: #2e7d32 !important;
+}
+
+// フッター
+.popup-footer {
+  padding: 12px 0 0;
+
+  .btn-save {
+    margin: 0;
+    text-decoration: none;
+    text-align: center;
+
+    &:visited {
+      color: $white;
+    }
+  }
+}
+
+// バージョン情報
+.version-info {
+  text-align: center;
+  color: $text-muted;
+  font-size: 0.7rem;
+  margin-top: 16px;
+  padding: 8px 0;
+}

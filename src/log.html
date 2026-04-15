@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>認証ログ | Sesame!</title>
+    <link rel="stylesheet" href="./sass/log.scss" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="ttl-l title">
+        <span>Sesame!</span>
+      </h1>
+
+      <div class="settings-layout">
+        <aside class="sidebar">
+          <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+              <li><a href="options.html" class="sidebar-item">登録済みウェブサイト</a></li>
+              <li><span class="sidebar-item sidebar-item--active">認証ログ</span></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <main class="main-content">
+          <div class="credential-mask-bar">
+            <label class="credential-mask-bar__row" for="showCredentialsToggle">
+              <span class="toggle-switch toggle-switch--inline">
+                <input
+                  type="checkbox"
+                  id="showCredentialsToggle"
+                  class="toggle-input"
+                />
+                <span class="toggle-slider"></span>
+              </span>
+              <span class="credential-mask-bar__text">ユーザー名とパスワードを表示</span>
+            </label>
+          </div>
+          <section class="section" id="section-log">
+            <div class="section-header">
+              <button class="btn btn-danger" id="clearLogsBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                <span>ログを削除</span>
+              </button>
+            </div>
+            <div id="logList"></div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="modal" id="clearModal" aria-hidden="true" data-micromodal-close>
+      <div class="modal-content modal-content--sm">
+        <h2 class="ttl-m">削除の確認</h2>
+        <div class="modal-body">
+          <p>すべての認証ログを削除しますか？</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-micromodal-close>キャンセル</button>
+          <button type="button" class="btn btn-danger" id="clearConfirmBtn">削除</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./js/log.js"></script>
+  </body>
+</html>

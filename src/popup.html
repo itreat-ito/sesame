@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sesame</title>
+    <link rel="stylesheet" href="./sass/popup.scss" />
+  </head>
+  <body>
+    <div class="popup">
+      <header class="popup-header">
+        <h1 class="popup-header__title">Sesame!</h1>
+        <p class="popup-header__subtitle">Bypass BASIC Auth</p>
+      </header>
+
+      <section class="popup-status" id="statusSection">
+        <div class="popup-status__domain">
+          <div class="popup-status__title-row">
+            <span class="popup-status__label">現在のサイト</span>
+            <div class="popup-status__badge" id="statusBadge" aria-hidden="true">
+              <span class="badge badge--registered">登録済み</span>
+            </div>
+          </div>
+          <span class="popup-status__value" id="currentDomain">-</span>
+        </div>
+      </section>
+
+      <section class="popup-form">
+        <h2 class="ttl-s">ウェブサイトを登録</h2>
+        <form id="authForm">
+          <div class="form-group">
+            <label for="domain">ドメイン</label>
+            <input type="text" id="domain" placeholder="example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="username">ユーザー名</label>
+            <input type="text" id="username" placeholder="user" required />
+          </div>
+          <div class="form-group">
+            <label for="password">パスワード</label>
+            <input type="text" id="password" placeholder="password" required />
+          </div>
+          <button type="submit" class="btn btn-save" id="saveBtn">保存</button>
+        </form>
+      </section>
+
+      <footer class="popup-footer">
+        <a href="#" id="openOptions" class="btn btn-save">設定</a>
+      </footer>
+    </div>
+
+    <script type="module" src="./js/popup.js"></script>
+  </body>
+</html>

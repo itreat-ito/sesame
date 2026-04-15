@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>プライバシーポリシー / Privacy Policy — Sesame!</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --text: #1a1a1a;
+      --muted: #555;
+      --border: #ddd;
+      --bg: #fff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text: #f0f0f0;
+        --muted: #aaa;
+        --border: #444;
+        --bg: #121212;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+      margin: 0;
+      padding: 1.5rem clamp(1rem, 4vw, 2rem) 3rem;
+      max-width: 44rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .lang-nav {
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      padding: 0.75rem 1rem;
+      background: color-mix(in srgb, var(--border) 35%, transparent);
+      border-radius: 6px;
+    }
+    .lang-nav a { margin-right: 1rem; white-space: nowrap; }
+    section[id] { scroll-margin-top: 1rem; }
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 0.25rem;
+      letter-spacing: -0.02em;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h2 {
+      font-size: 1.15rem;
+      margin: 2rem 0 0.75rem;
+      font-weight: 600;
+    }
+    p, ul { margin: 0 0 1rem; }
+    ul { padding-left: 1.25rem; }
+    li { margin-bottom: 0.35rem; }
+    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    .note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      border-left: 3px solid var(--border);
+      padding-left: 1rem;
+      margin: 1rem 0;
+    }
+    .lang-divider {
+      margin: 3.5rem 0 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 2px solid var(--border);
+    }
+    .lang-divider > h1:first-child {
+      margin-top: 0;
+    }
+    section[lang="en"] {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <nav class="lang-nav" aria-label="Language">
+    <a href="#privacy-ja">日本語</a>
+    <a href="#privacy-en">English</a>
+  </nav>
+
+  <!-- ========== 日本語版 ========== -->
+  <section id="privacy-ja" lang="ja">
+    <h1>プライバシーポリシー</h1>
+    <p class="meta">拡張機能: <strong>Sesame!</strong><br>施行日: 2026年4月13日</p>
+
+    <p>
+      本プライバシーポリシーは、ブラウザ拡張機能「Sesame!」（以下「<strong>本拡張機能</strong>」）が、利用時にどのように情報を取り扱うかを説明するものです。
+      本拡張機能は、お客様が登録したドメインまたは URL パターンに対し、HTTP Basic 認証（BASIC 認証）の資格情報をブラウザに代わって提示することで、繰り返しの手入力を減らすために提供されています。
+    </p>
+
+    <h2>概要</h2>
+    <ul>
+      <li>お客様の個人情報を<strong>販売しません</strong>。</li>
+      <li>本拡張機能内に広告やアクセス解析用のトラッカーを<strong>組み込んでいません</strong>。</li>
+      <li>資格情報・設定・ログ等のデータは、開発者のサーバーへ送信する設計には<strong>なっていません</strong>。主に <code>chrome.storage.local</code> を用いてお客様のブラウザ内（端末内）に保存されます。</li>
+      <li>本拡張機能は <code>chrome.storage.sync</code> を用いた Chrome プロファイル間の同期には対応していません。</li>
+    </ul>
+
+    <h2>本拡張機能が取り扱う情報</h2>
+    <p>本拡張機能は、機能の提供に必要な範囲でのみデータを処理します。</p>
+    <ul>
+      <li>
+        <strong>ネットワーク上の認証チャレンジに関する情報</strong>:
+        サイトが HTTP Basic 認証を要求した際、リクエストの URL 等を参照して、お客様が登録したパターンと照合し、資格情報を提示できるかどうかを判断します。また、任意の認証ログ（成功・失敗、時刻、対象 URL、ユーザー名、パスワードを含む場合があります）を端末内に記録できます。これらの処理はブラウザの拡張機能 API 上で行われます。
+      </li>
+      <li>
+        <strong>アクティブなタブの情報（拡張機能の UI 利用時）</strong>:
+        ツールバーのポップアップを開いたとき、現在のタブの URL（ホスト名の取得を含む）を読み取り、入力欄への事前入力や、登録済みかどうかの表示に利用します。
+      </li>
+      <li>
+        <strong>お客様が登録・設定した項目</strong>:
+        ドメインまたは URL パターン、ユーザー名、パスワード（パスワードは AES-GCM で暗号化したうえで保存）、動的パスワード用テンプレート、エントリの有効／無効、表示順、直近の認証成功時刻などです。
+      </li>
+      <li>
+        <strong>暗号化キー</strong>:
+        パスワードの暗号化に用いる鍵は、端末上で生成され <code>chrome.storage.local</code> に保存されます。
+      </li>
+    </ul>
+
+    <h2>ウェブサイトへの資格情報の送信について</h2>
+    <p>
+      お客様が登録したサイトが BASIC 認証を要求した場合、ブラウザの通常の動作として、そのサイトへの HTTPS／HTTP リクエストにユーザー名とパスワードが含まれることがあります。
+      これは本拡張機能の目的である「登録済みサイトへの自動入力」に必要な動作であり、開発者が別途その内容を収集するものではありません。
+    </p>
+
+    <h2>ネットワーク通信と第三者</h2>
+    <p>
+      本拡張機能は、資格情報や利用状況を開発者のサーバーに送信する機能を<strong>備えていません</strong>。
+      お客様が本拡張機能の画面から外部ウェブサイト（例: ストアのポリシーや Google のポリシー）のリンクを開いた場合は、それらのサイトのポリシーが適用されます。
+    </p>
+
+    <h2>Chrome のストレージ</h2>
+    <p>
+      データは原則として <code>chrome.storage.local</code> に保存され、お客様の端末に留まります。
+      Chrome の設定から拡張機能のデータを消去する、本拡張機能をアンインストールする、オプションで編集するなど、お客様が削除するまで保持されます。
+    </p>
+
+    <h2>権限とその理由</h2>
+    <ul>
+      <li><strong>webRequest</strong> — HTTP Basic 認証が要求されたリクエストを検知し、完了・エラーと照合してログを残すため。</li>
+      <li><strong>webRequestAuthProvider</strong> — Manifest V3 において、認証プロバイダーとしてユーザー名・パスワードを提示するため。</li>
+      <li><strong>storage</strong> — 資格情報、暗号化キー、認証ログ、UI の状態などの保存・読み込みのため。</li>
+      <li><strong>activeTab</strong> — ユーザーが拡張機能を操作したときに、現在のタブに関する必要な情報にアクセスするため。</li>
+      <li><strong>tabs</strong> — ポップアップでアクティブなタブの URL を取得するため。</li>
+      <li>
+        <strong>ホスト権限（&lt;all_urls&gt;）</strong> —
+        お客様が任意のオリジンを登録し得るため、登録済みパターンに合致するリクエストで BASIC 認証に応答するリスナーを必要な範囲で登録するため。ページの内容を読み取り・改変するコンテンツスクリプトは使用していません。
+      </li>
+    </ul>
+
+    <h2>データの保存期間</h2>
+    <p>
+      設定およびログは、Chrome で拡張機能のデータを消去する、本拡張機能をアンインストールする、オプションまたはログ画面で削除するなど、お客様が削除するまで保持されます。
+      認証ログは件数上限に達した場合、古いものから順に破棄される場合があります。
+    </p>
+
+    <h2>お子様について</h2>
+    <p>本拡張機能はお子様を対象としたものではなく、故意にお子様から個人情報を収集することはありません。</p>
+
+    <h2>本ポリシーの変更</h2>
+    <p>
+      本拡張機能の動作や要件の変更に伴い、本プライバシーポリシーを更新することがあります。
+      更新時には冒頭の施行日を改訂します。
+    </p>
+
+    <h2>お問い合わせ</h2>
+    <p>
+      本拡張機能に関するプライバシーに関するお問い合わせは、<strong>Chrome ウェブストアの当該拡張機能ページに記載の開発者連絡先</strong>をご利用ください。
+    </p>
+  </section>
+
+  <!-- ========== English ========== -->
+  <section class="lang-divider" id="privacy-en" lang="en" aria-labelledby="privacy-en-heading">
+    <h1 id="privacy-en-heading">Privacy Policy</h1>
+    <p class="meta">Extension: <strong>Sesame!</strong><br>Effective date: April 13, 2026</p>
+
+    <p>
+      This Privacy Policy describes how the Sesame! browser extension (“<strong>Extension</strong>”) handles information when you use it.
+      The Extension helps you avoid repeatedly typing HTTP Basic Authentication credentials by supplying credentials you have saved for specific domains or URL patterns.
+    </p>
+
+    <h2>Summary</h2>
+    <ul>
+      <li>We do <strong>not</strong> sell your personal information.</li>
+      <li>We do <strong>not</strong> run advertising or analytics trackers inside the Extension.</li>
+      <li>Credentials, settings, and logs are <strong>not</strong> designed to be transmitted to the developer’s servers. They are stored primarily in <code>chrome.storage.local</code> on your device.</li>
+      <li>The Extension does <strong>not</strong> use <code>chrome.storage.sync</code> to sync data across Chrome profiles.</li>
+    </ul>
+
+    <h2>Information the Extension processes</h2>
+    <p>The Extension processes data only as needed to provide its features:</p>
+    <ul>
+      <li>
+        <strong>Authentication-related network information</strong>: When a site requests HTTP Basic Authentication, the Extension inspects the request URL (and related request metadata) to match your saved patterns and decide whether to supply credentials. It may also record optional authentication logs (success or failure, time, URL, username, and—depending on how you use the log feature—password) locally on your device. Processing occurs through the browser’s extension APIs.
+      </li>
+      <li>
+        <strong>Active tab information (Extension UI)</strong>: When you open the toolbar popup, the Extension reads the active tab’s URL (including the hostname) to pre-fill fields and to show whether a matching entry exists.
+      </li>
+      <li>
+        <strong>Data you configure</strong>: Domain or URL patterns, usernames, passwords (passwords are encrypted with AES-GCM before storage), optional dynamic password templates, enabled/disabled state per entry, display order, and optional timestamps such as last successful authentication.
+      </li>
+      <li>
+        <strong>Encryption key</strong>: A key generated on your device for password encryption is stored in <code>chrome.storage.local</code>.
+      </li>
+    </ul>
+
+    <h2>Sending credentials to websites</h2>
+    <p>
+      When a site you registered requests HTTP Basic Authentication, the browser may include those credentials in HTTPS/HTTP requests to that site as part of normal browser behavior.
+      That is required for the Extension’s core purpose (automatic credential submission). The developer does not collect those credentials on a separate server.
+    </p>
+
+    <h2>Network requests and third parties</h2>
+    <p>
+      The Extension does <strong>not</strong> include functionality to send your credentials or usage data to the developer’s servers.
+      If you open external links from the Extension (for example, to a policy page or the Google Privacy Policy), those sites apply their own policies.
+    </p>
+
+    <h2>Chrome storage</h2>
+    <p>
+      Data is stored primarily in <code>chrome.storage.local</code> and remains on your device until you remove it (for example by clearing extension data in Chrome, uninstalling the Extension, or deleting entries through the options or log UI).
+    </p>
+
+    <h2>Permissions (why they exist)</h2>
+    <ul>
+      <li><strong>webRequest</strong> — Detect HTTP Basic Authentication challenges and correlate requests with completion or error events for optional logging.</li>
+      <li><strong>webRequestAuthProvider</strong> — Act as an authentication provider and supply username/password for HTTP Basic Authentication under Manifest V3.</li>
+      <li><strong>storage</strong> — Save and load credentials, encryption keys, authentication logs, and UI-related state.</li>
+      <li><strong>activeTab</strong> — Access the current tab when you interact with the Extension in a user-initiated context.</li>
+      <li><strong>tabs</strong> — Read the active tab’s URL when the popup opens.</li>
+      <li>
+        <strong>Host access (&lt;all_urls&gt;)</strong> — You may register any origin; the background listener must handle authentication-related events for requests that match your saved patterns. The Extension does not use content scripts to read or modify page content on websites.
+      </li>
+    </ul>
+
+    <h2>Data retention</h2>
+    <p>
+      Your settings and logs remain until you delete them or uninstall the Extension.
+      Authentication logs may be trimmed when a maximum number of entries is reached, with older entries removed first.
+    </p>
+
+    <h2>Children</h2>
+    <p>The Extension is not directed at children, and we do not knowingly collect personal information from children.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>
+      We may update this Privacy Policy when the Extension’s behavior or requirements change.
+      The effective date at the top will be revised when updates are published.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      For privacy questions about this Extension, please use the <strong>developer contact information shown on this Extension’s Chrome Web Store listing page</strong>.
+    </p>
+  </section>
+</body>
+</html>

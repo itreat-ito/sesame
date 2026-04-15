@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>登録済みウェブサイト | Sesame!</title>
+    <link rel="stylesheet" href="./sass/options.scss" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="ttl-l title">
+        <span>Sesame!</span>
+      </h1>
+
+      <div class="settings-layout">
+        <aside class="sidebar">
+          <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+              <li><span class="sidebar-item sidebar-item--active">登録済みウェブサイト</span></li>
+              <li><a href="log.html" class="sidebar-item">認証ログ</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <main class="main-content">
+          <div class="credential-mask-bar">
+            <label class="credential-mask-bar__row" for="showCredentialsToggle">
+              <span class="toggle-switch toggle-switch--inline">
+                <input
+                  type="checkbox"
+                  id="showCredentialsToggle"
+                  class="toggle-input"
+                />
+                <span class="toggle-slider"></span>
+              </span>
+              <span class="credential-mask-bar__text">ユーザー名とパスワードを表示</span>
+            </label>
+          </div>
+          <section class="section" id="section-entries">
+            <div class="section-header">
+              <div class="section-header__import-export">
+                <button class="btn btn-secondary" id="importBtn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
+                  <span>インポート</span>
+                </button>
+                <button class="btn btn-secondary" id="exportBtn" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M12 3v12"/><path d="m17 8-5-5-5 5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg>
+                  <span>エクスポート</span>
+                </button>
+                <input type="file" id="importFile" accept=".json" hidden />
+              </div>
+              <div class="section-header__actions">
+                <button class="btn btn-primary" id="addNewBtn">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                  <span>新規追加</span>
+                </button>
+              </div>
+            </div>
+            <p class="section-header__description">ドメインの判定はリストの上から順に行われます。優先度に応じて並び替えてください。</p>
+            <div class="entry-list" id="entriesList"></div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="modal" id="editModal" aria-hidden="true" data-micromodal-close>
+      <div class="modal-content">
+        <h2 class="ttl-m">
+          <span id="modalTitle">ウェブサイトを追加</span>
+          <span class="close" data-micromodal-close>&times;</span>
+        </h2>
+        <form id="editForm">
+          <input type="hidden" id="editId" />
+          <div class="form-group">
+            <label for="editDomain">ドメイン</label>
+            <input
+              type="text"
+              id="editDomain"
+              placeholder="example.com"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="editUsername">ユーザー名</label>
+            <input type="text" id="editUsername" placeholder="user" required />
+          </div>
+          <div class="form-group form-group--password">
+            <label for="editPassword">パスワード</label>
+            <input
+              type="text"
+              id="editPassword"
+              placeholder="password または ##example{{YYYYMM}}"
+              required
+            />
+            <div class="form-group__dynamic-row">
+              <label class="toggle-switch">
+                <input
+                  type="checkbox"
+                  id="editDynamicPassword"
+                  class="toggle-input"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+              <span class="form-group__dynamic-caption">動的パスワード</span>
+            </div>
+            <small class="form-group__dynamic-hint">
+              認証時に <span class="ff-mono">{{YYYYMM}}</span> が現在の年月(例: 202603)に置き換えられます。
+            </small>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" data-micromodal-close>
+              キャンセル
+            </button>
+            <button type="submit" class="btn btn-primary">保存</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="deleteModal" aria-hidden="true" data-micromodal-close>
+      <div class="modal-content modal-content--sm">
+        <h2 class="ttl-m">削除の確認</h2>
+        <div class="modal-body">
+          <p>このウェブサイトを削除しますか？</p>
+          <p class="delete-target" id="deleteTarget"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-micromodal-close>キャンセル</button>
+          <button type="button" class="btn btn-danger" id="deleteConfirmBtn">削除</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="importModal" aria-hidden="true" data-micromodal-close>
+      <div class="modal-content modal-content--sm">
+        <h2 class="ttl-m">インポートの確認</h2>
+        <div class="modal-body">
+          <p>選択したファイルの内容を取り込みます。実行してよろしいですか？</p>
+          <ul class="import-preview">
+            <li>新規: <strong id="importPreviewAdded">0</strong> 件</li>
+            <li>更新: <strong id="importPreviewUpdated">0</strong> 件</li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-micromodal-close>キャンセル</button>
+          <button type="button" class="btn btn-primary" id="importConfirmBtn">インポート</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./js/options.js"></script>
+  </body>
+</html>
