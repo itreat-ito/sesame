@@ -120,6 +120,58 @@ body {
   }
 }
 
+// ページャー
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 24px;
+
+  &__pages {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__button {
+    min-width: 34px;
+    height: 34px;
+    padding: 4px 8px;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    background-color: $white;
+    color: $text-color;
+    font: inherit;
+    font-size: 0.85rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all .3s;
+
+    &:hover:not(:disabled) {
+      border-color: $primary-color;
+      background-color: $primary-color;
+      color: $white;
+    }
+
+    &:disabled {
+      color: $text-muted;
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+
+    &--active {
+      border-color: $primary-color;
+      background-color: $primary-color;
+      color: $white;
+    }
+
+    &--nav {
+      padding: 4px 12px;
+    }
+  }
+}
+
 // バッジ
 .badge {
   display: inline-block;
@@ -130,13 +182,13 @@ body {
   white-space: nowrap;
 
   &--success {
-    background-color: #d1fae5;
-    color: #065f46;
+    background-color: #00a16c;
+    color: $white;
   }
 
   &--failure {
-    background-color: #fee2e2;
-    color: #991b1b;
+    background-color: $danger-color;
+    color: $white;
   }
 }
 

@@ -11,23 +11,16 @@ body {
   padding: 0;
 }
 
-// ヘッダー
-.popup-header {
-  text-align: center;
+// ロゴ
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 16px;
   margin-bottom: 24px;
-
-  &__title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: $text-color;
-    margin: 0;
-  }
-
-  &__subtitle {
-    font-size: 0.9rem;
-    color: $text-muted;
-    margin-top: 4px;
-    line-height: 1.6;
+  img {
+    max-width: 144px;
   }
 }
 

@@ -12,6 +12,11 @@ const logList = document.getElementById('logList');
 const clearLogsBtn = document.getElementById('clearLogsBtn');
 const clearConfirmBtn = document.getElementById('clearConfirmBtn');
 const showCredentialsToggle = document.getElementById('showCredentialsToggle');
+const pagination = document.getElementById('pagination');
+
+const LOGS_PER_PAGE = 30;
+let authLogs = [];
+let currentPage = 1;
 
 const modalConfig = {
   awaitCloseAnimation: true,
@@ -41,17 +46,42 @@ function truncateUrl(url, maxLength = 80) {
   return url.slice(0, maxLength) + '…';
 }
 
-async function renderLogs() {
-  const logs = await getAuthLogs();
+function renderPagination(totalPages) {
+  if (totalPages <= 1) {
+    pagination.hidden = true;
+    pagination.innerHTML = '';
+    return;
+  }
 
-  if (logs.length === 0) {
+  pagination.hidden = false;
+  pagination.innerHTML = `
+    <button type="button" class="pagination__button pagination__button--nav" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''}>前へ</button>
+    <span class="pagination__pages">
+      ${Array.from({ length: totalPages }, (_, index) => {
+        const page = index + 1;
+        return `<button type="button" class="pagination__button${page === currentPage ? ' pagination__button--active' : ''}" data-page="${page}" aria-label="${page}ページ"${page === currentPage ? ' aria-current="page"' : ''}>${page}</button>`;
+      }).join('')}
+    </span>
+    <button type="button" class="pagination__button pagination__button--nav" data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}>次へ</button>
+  `;
+}
+
+function renderLogPage() {
+  if (authLogs.length === 0) {
     logList.innerHTML = `
       <div class="empty-state">
         <p>認証ログはありません</p>
       </div>
     `;
+    pagination.hidden = true;
+    pagination.innerHTML = '';
     return;
   }
+
+  const totalPages = Math.ceil(authLogs.length / LOGS_PER_PAGE);
+  currentPage = Math.min(currentPage, totalPages);
+  const pageStart = (currentPage - 1) * LOGS_PER_PAGE;
+  const logs = authLogs.slice(pageStart, pageStart + LOGS_PER_PAGE);
 
   const showPlain = isShowCredentialsChecked(showCredentialsToggle);
 
@@ -99,11 +129,27 @@ async function renderLogs() {
       </table>
     </div>
   `;
+
+  renderPagination(totalPages);
+}
+
+async function renderLogs() {
+  authLogs = await getAuthLogs();
+  currentPage = Math.min(currentPage, Math.max(1, Math.ceil(authLogs.length / LOGS_PER_PAGE)));
+  renderLogPage();
 }
 
 showCredentialsToggle.addEventListener('change', async () => {
-  await renderLogs();
+  renderLogPage();
   triggerCredentialRevealFlash(logList);
+});
+
+pagination.addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-page]');
+  if (!button || button.disabled) return;
+
+  currentPage = Number(button.dataset.page);
+  renderLogPage();
 });
 
 clearLogsBtn.addEventListener('click', () => {
