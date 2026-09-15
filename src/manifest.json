@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Sesame!",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "登録済みのドメインに対してBASIC認証の入力を自動で行います。",
   "permissions": [
     "webRequest",
